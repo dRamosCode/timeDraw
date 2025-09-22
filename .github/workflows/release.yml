@@ -40,11 +40,15 @@ jobs:
 
       - name: Set artifact path
         id: set-artifact-path
+        shell: pwsh
         run: |
-          if [[ "${{ runner.os }}" == "Windows" ]]; then
-            echo "path=dist/*.exe" >> $GITHUB_OUTPUT
-          elif [[ "${{ runner.os }}" == "macOS" ]]; then
-            echo "path=dist/*.dmg" >> $GITHUB_OUTPUT
-          elif [[ "${{ runner.os }}" == "Linux" ]]; then
-            echo "path=dist/*.AppImage" >> $GITHUB_OUTPUT
-          fi
+          if ($env:RUNNER_OS -eq "Windows") {
+              echo "path=dist/*.exe" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+          }
+          elseif ($env:RUNNER_OS -eq "macOS") {
+              echo "path=dist/*.dmg" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+          }
+          elseif ($env:RUNNER_OS -eq "Linux") {
+              echo "path=dist/*.AppImage" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+          }
+
