@@ -23,7 +23,8 @@
       "dist-electron"
     ],
     "directories": {
-      "buildResources": "build"
+      "buildResources": "build",
+      "output": "release"
     },
     "publish": null,
     "win": {
