@@ -1,6 +1,6 @@
 {
   "name": "timedraw",
-  "author": "dRamosCode",
+  "author": "dRamosCode <dRamosCode@outlook.com>",
   "description": "A multiplatform desktop app to draw time diagrams.",
   "private": true,
   "version": "1.0.0",
