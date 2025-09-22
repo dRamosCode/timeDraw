@@ -22,11 +22,8 @@ jobs:
       - name: Install dependencies (clean)
         run: npm ci
 
-      - name: Build renderer
+      - name: Build renderer and Package Electron App
         run: npm run build
-
-      - name: Package Electron app
-        run: npm run dist
 
       - name: Upload release artifacts
         uses: softprops/action-gh-release@v1
