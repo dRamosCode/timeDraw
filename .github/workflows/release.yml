@@ -13,27 +13,35 @@ jobs:
         os: [windows-latest, macos-latest, ubuntu-latest]
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "npm"
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build renderer and Package Electron App
+      - name: Build Electron App
         run: npm run build
 
-      - name: Upload release artifacts
+      - name: Upload artifacts
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            release/**/*.exe
-            release/**/*.AppImage
-            release/**/*.dmg
+          files: ${{ steps.set-artifact-path.outputs.path }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set artifact path
+        id: set-artifact-path
+        run: |
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            echo "path=dist/*.exe" >> $GITHUB_OUTPUT
+          elif [[ "${{ runner.os }}" == "macOS" ]]; then
+            echo "path=dist/*.dmg" >> $GITHUB_OUTPUT
+          elif [[ "${{ runner.os }}" == "Linux" ]]; then
+            echo "path=dist/*.AppImage" >> $GITHUB_OUTPUT
+          fi
