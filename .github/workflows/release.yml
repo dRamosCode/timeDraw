@@ -3,36 +3,37 @@ name: Build and Release
 on:
   push:
     tags:
-      - "v*" # Runs only when you push a version tag like v1.0.0
+      - "v*" # Runs only when pushing version tags like v1.0.0
 
 jobs:
   release:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest] # Build for all 3 platforms
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: "npm"
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install dependencies (clean)
+        run: npm ci
 
-      - name: Build and Package
+      - name: Build renderer
         run: npm run build
 
-      - name: Release Artifacts
-        uses: softprops/action-gh-release@v2
+      - name: Package Electron app
+        run: npm run dist
+
+      - name: Upload release artifacts
+        uses: softprops/action-gh-release@v1
         with:
           files: |
             dist/*.exe
-            dist/*.dmg
             dist/*.AppImage
+            dist/*.dmg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
