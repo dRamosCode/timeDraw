@@ -1,5 +1,7 @@
 {
   "name": "timedraw",
+  "author": "dRamosCode",
+  "description": "A multiplatform desktop app to draw time diagrams.",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -8,6 +10,34 @@
     "build": "tsc && vite build && electron-builder",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dRamosCode/timedraw.git"
+  },
+  "build": {
+    "appId": "dRamosCode.timedraw",
+    "productName": "TimeDraw",
+    "files": [
+      "dist",
+      "dist-electron"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "publish": null,
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    }
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
