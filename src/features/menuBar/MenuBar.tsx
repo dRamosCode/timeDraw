@@ -20,6 +20,8 @@ import { Diagram, generateChartData } from "@/App";
 import { CloseButton } from "./CloseButton";
 import { MaximizeButton } from "./MaximizeButton";
 import { MinimizeButton } from "./MinimizeButton";
+import { useEffect, useState } from "react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 // Props
 type MenuBarProps = {
@@ -55,6 +57,13 @@ const handleRender = async () => {
 };
 
 export default function MenuBar({ title, diagrams, setDiagrams, setTitle }: MenuBarProps) {
+
+    const [version, setVersion] = useState("");
+
+    useEffect(() => {
+        window.api.getAppVersion().then(setVersion);
+    }, []);
+
 
     // Save JSON
     const handleSave = () => {
@@ -111,7 +120,23 @@ export default function MenuBar({ title, diagrams, setDiagrams, setTitle }: Menu
     return (
         <div className="fixed top-0 left-0 w-full h-10 bg-white z-99 flex items-center content-stretch gap-2 border-b-2">
             {/* Logo */}
-            <img src="../images/icon.png" alt="logo" className="h-6 mx-3" />
+            <Dialog >
+                <DialogTrigger asChild>
+                    <img src="../images/icon.png" alt="logo" className="h-6 mx-3 hover:cursor-pointer" />
+                </DialogTrigger>
+                <DialogContent>
+                    <DialogHeader className="flex flex-col items-center">
+                        <img src="../images/icon.png" alt="logo" className="w-30 items-center drop-shadow-lg/25" />
+                        <DialogTitle className="text-center font-[Poppins] font-bold text-2xl">TimeDraw</DialogTitle>
+                        <DialogTitle className="text-center font-regular text-sm">dRamosCode </DialogTitle>
+                        <DialogTitle className="text-center font-light text-sm bg-secondary py-2 px-4 rounded-full text-primary">Version {version} </DialogTitle>
+                        <DialogDescription className="text-center">
+                            This project is open source and all contributions are welcome. <br />
+                            Visit <i>https://github.com/dRamosCode/TimeDraw</i> for more information.
+                        </DialogDescription>
+                    </DialogHeader>
+                </DialogContent>
+            </Dialog>
             {/* New file */}
             <AlertDialog >
                 <AlertDialogTrigger asChild>

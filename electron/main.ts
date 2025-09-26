@@ -71,6 +71,11 @@ ipcMain.on("window:close", () => {
   if (win) win.close();
 });
 
+// Get app version
+ipcMain.handle("get-app-version", () => {
+  return app.getVersion();
+});
+
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
