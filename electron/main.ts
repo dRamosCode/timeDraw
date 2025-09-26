@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
@@ -15,14 +15,25 @@ process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL ? path.join(process.env.APP_ROOT, 
 
 let win: BrowserWindow | null;
 
+let iconPath: string | undefined;
+
+if (process.platform === "win32") {
+  iconPath = path.join(process.env.APP_ROOT, "images/icon.ico");
+} else if (process.platform === "darwin") {
+  iconPath = path.join(process.env.APP_ROOT, "images/icon.icns");
+} else {
+  iconPath = path.join(process.env.APP_ROOT, "images/icon.png");
+}
+
 function createWindow() {
   win = new BrowserWindow({
-    icon: path.join(process.env.VITE_PUBLIC, "electron-vite.svg"),
+    icon: iconPath,
+    frame: false,
     webPreferences: {
       preload: path.join(__dirname, "preload.mjs"),
       contextIsolation: true,
       nodeIntegration: false,
-      devTools: false,
+      devTools: true,
     },
   });
 
@@ -42,6 +53,23 @@ function createWindow() {
   }
   win.maximize();
 }
+
+// Custom window controls
+ipcMain.on("window:minimize", () => {
+  if (win) win.minimize();
+});
+ipcMain.on("window:maximize", () => {
+  if (win) {
+    if (win.isMaximized()) {
+      win.unmaximize();
+    } else {
+      win.maximize();
+    }
+  }
+});
+ipcMain.on("window:close", () => {
+  if (win) win.close();
+});
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

@@ -28,16 +28,19 @@
     },
     "publish": null,
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "icon": "images/icon.ico"
     },
     "mac": {
-      "target": "dmg"
+      "target": "dmg",
+      "icon": "images/icon.icns"
     },
     "linux": {
       "target": [
         "AppImage",
         "deb"
-      ]
+      ],
+      "icon": "images/icon.png"
     }
   },
   "dependencies": {

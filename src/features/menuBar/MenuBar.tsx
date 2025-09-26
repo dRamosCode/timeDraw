@@ -17,6 +17,9 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Diagram } from "@/App";
+import { CloseButton } from "./CloseButton";
+import { MaximizeButton } from "./MaximizeButton";
+import { MinimizeButton } from "./MinimizeButton";
 
 // Props
 type MenuBarProps = {
@@ -95,9 +98,11 @@ export default function MenuBar({ title, diagrams, setDiagrams, setTitle }: Menu
     };
 
     return (
-        <div className="fixed top-0 left-0 w-full h-fit p-2 bg-white z-99 flex items-center gap-2 border-b-2">
+        <div className="fixed top-0 left-0 w-full h-10 bg-white z-99 flex items-center content-stretch gap-2 border-b-2">
+            {/* Logo */}
+            <img src="../images/icon.png" alt="logo" className="h-6 mx-3" />
             {/* New file */}
-            <AlertDialog>
+            <AlertDialog >
                 <AlertDialogTrigger asChild>
                     <div>
                         <Tooltip>
@@ -160,6 +165,12 @@ export default function MenuBar({ title, diagrams, setDiagrams, setTitle }: Menu
                     <p>Take snapshot</p>
                 </TooltipContent>
             </Tooltip>
-        </div >
+            {/* Window controls */}
+            <div className="ml-auto flex h-full items-center">
+                <MinimizeButton></MinimizeButton>
+                <MaximizeButton></MaximizeButton>
+                <CloseButton></CloseButton>
+            </div>
+        </div>
     );
 }

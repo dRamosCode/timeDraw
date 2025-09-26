@@ -36,7 +36,7 @@ jobs:
         shell: pwsh
         run: |
           if ($env:RUNNER_OS -eq "Windows") {
-              echo "path=release/**/*.exe" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+              echo "path=release/TimeDraw\ Setup*.exe" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
           }
           elseif ($env:RUNNER_OS -eq "macOS") {
               echo "path=release/**/*.dmg" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
