@@ -16,7 +16,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { Diagram } from "@/App";
+import { Diagram, generateChartData } from "@/App";
 import { CloseButton } from "./CloseButton";
 import { MaximizeButton } from "./MaximizeButton";
 import { MinimizeButton } from "./MinimizeButton";
@@ -93,8 +93,19 @@ export default function MenuBar({ title, diagrams, setDiagrams, setTitle }: Menu
 
     // New file
     const handleNew = () => {
+        // Delete all diagrams
         setDiagrams([]);
-        setTitle("");
+        // Add a new empty diagram
+        setDiagrams((prev) => [
+            ...prev,
+            {
+                id: 1,
+                name: "",
+                type: "boolean",
+                colour: "#555555",
+                chartData: generateChartData(20),
+            },
+        ]);
     };
 
     return (

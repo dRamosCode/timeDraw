@@ -36,7 +36,7 @@ export type Diagram = {
 };
 
 // Function to initialize chart data
-function generateChartData(length: number): ChartDataPoint[] {
+export function generateChartData(length: number): ChartDataPoint[] {
   return Array.from({ length }, (_, i) => ({
     time: i + 1,
     value: 0,
@@ -45,7 +45,13 @@ function generateChartData(length: number): ChartDataPoint[] {
 
 function App() {
 
-  const [diagrams, setDiagrams] = useState<Diagram[]>([]);
+  const [diagrams, setDiagrams] = useState<Diagram[]>([{
+    id: 1,
+    name: "",
+    type: "boolean",
+    colour: "#555555",
+    chartData: generateChartData(20),
+  }]);
   const [activeId, setActiveId] = useState<number | null>(null);
   const [title, setTitle] = useState<string>("");
 
@@ -65,7 +71,6 @@ function App() {
 
     // Check if nextId is in use, if so increment and check again
     while (ids.includes(newId)) newId++;
-
     setDiagrams((prev) => [
       ...prev,
       {
