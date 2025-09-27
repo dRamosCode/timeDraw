@@ -122,11 +122,11 @@ export default function MenuBar({ title, diagrams, setDiagrams, setTitle }: Menu
             {/* Logo */}
             <Dialog >
                 <DialogTrigger asChild>
-                    <img src="../images/icon.png" alt="logo" className="h-6 mx-3 hover:cursor-pointer" />
+                    <img src="/images/icon.png" alt="logo" className="h-6 mx-3 hover:cursor-pointer" />
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader className="flex flex-col items-center">
-                        <img src="../images/icon.png" alt="logo" className="w-30 items-center drop-shadow-lg/25" />
+                        <img src="/images/icon.png" alt="logo" className="w-30 items-center drop-shadow-lg/25" />
                         <DialogTitle className="text-center font-[Poppins] font-bold text-2xl">TimeDraw</DialogTitle>
                         <DialogTitle className="text-center font-regular text-sm">dRamosCode </DialogTitle>
                         <DialogTitle className="text-center font-light text-sm bg-secondary py-2 px-4 rounded-full text-primary">Version {version} </DialogTitle>
