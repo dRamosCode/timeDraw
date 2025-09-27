@@ -36,7 +36,7 @@ The app is **cross-platform** and runs on Linux, Windows and macOS.
 Create and edit time diagrams of `boolean` and `number` types with ease by clicking on the dots to change the diagram's value in that point. Change the information of the diagram and set colors by selecting them from a color picker, or directly write the code in any format you want.
 
 <p align="center">
-  <img src="videos/Interactive.gif" alt="Interactive TimeDraw Demo" width="600" />
+  <img src="videos/Interactive.gif" alt="Interactive TimeDraw Demo" />
 </p>
 
 ### Drag and drop
@@ -44,7 +44,7 @@ Create and edit time diagrams of `boolean` and `number` types with ease by click
 Easily swap diagrams position by drag and dropping them around.
 
 <p align="center">
-  <img src="videos/DragDrop.gif" alt="Interactive TimeDraw Demo" width="600" />
+  <img src="videos/DragDrop.gif" alt="Interactive TimeDraw Demo" />
 </p>
 
 ### Open / Save
@@ -52,7 +52,7 @@ Easily swap diagrams position by drag and dropping them around.
 Save your diagram setup for later use and share it with anyone but simply sharing a JSON file.
 
 <p align="center">
-  <img src="videos/SaveOpen.gif" alt="Interactive TimeDraw Demo" width="600" />
+  <img src="videos/SaveOpen.gif" alt="Interactive TimeDraw Demo" />
 </p>
 
 ### Take a snapshot
@@ -62,7 +62,7 @@ Export your diagram setup to a beautiful JPEG file and share it with anyone who 
 > A picture tells a thousand words.
 
 <p align="center">
-  <img src="videos/Snapshot.gif" alt="Interactive TimeDraw Demo" width="600" />
+  <img src="videos/Snapshot.gif" alt="Interactive TimeDraw Demo" />
 </p>
 
 ---
