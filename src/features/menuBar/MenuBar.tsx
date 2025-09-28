@@ -118,7 +118,7 @@ export default function MenuBar({ title, diagrams, setDiagrams, setTitle }: Menu
     };
 
     return (
-        <div className="fixed top-0 left-0 w-full h-10 bg-white z-99 flex items-center content-stretch gap-2 border-b-2">
+        <div id="menuBar" className="fixed top-0 left-0 w-full h-10 bg-white z-99 flex items-center content-stretch gap-2 border-b-2 app-region: drag;">
             {/* Logo */}
             <Dialog >
                 <DialogTrigger asChild>
